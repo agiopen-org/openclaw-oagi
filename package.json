@@ -1,6 +1,6 @@
 {
   "name": "@oagi/openclaw-computer-use",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "OAGI Lux computer-use agent integration for OpenClaw",
   "type": "module",
   "scripts": {

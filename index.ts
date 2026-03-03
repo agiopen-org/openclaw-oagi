@@ -24,7 +24,7 @@ type OagiPluginConfig = {
 };
 
 const plugin = {
-  id: "oagi-computer-use",
+  id: "openclaw-computer-use",
   name: "OAGI Computer Use",
   description: "Computer-use agent powered by OAGI Lux model",
 
