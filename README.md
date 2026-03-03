@@ -2,11 +2,15 @@
 
 Desktop automation via the [OAGI Lux](https://developer.agiopen.org) computer-use model.
 
+![Demo — OAGI computer-use searching Amazon via OpenClaw TUI](assets/demo.png)
+
 ## Install
 
 ```bash
 openclaw plugins install @oagi/openclaw-computer-use
 ```
+
+After installing, you **must** build the native dependencies (see [Native Dependencies](#native-dependencies) below).
 
 ## Prerequisites
 
@@ -16,17 +20,23 @@ openclaw plugins install @oagi/openclaw-computer-use
 
 ## Native Dependencies
 
-This plugin uses `robotjs` and `sharp` (via `@oagi/oagi`) for screen capture and input simulation. These are native modules that must be compiled for your platform.
-
-OpenClaw's plugin installer skips build scripts (`--ignore-scripts`) for security. If `robotjs` fails to load at runtime, build it manually:
+This plugin requires `robotjs` (screen capture and input simulation), which is a native C++ module that must be compiled for your platform. OpenClaw's plugin installer skips build scripts for security, so **you need to build robotjs manually after install**:
 
 ```bash
-# Find the robotjs directory
-find ~/.openclaw/extensions/oagi-computer-use -name "robotjs" -type d -path "*/node_modules/*"
-
-# Build it
-cd <path-from-above>
+cd ~/.openclaw/extensions/openclaw-computer-use/node_modules/robotjs
 npx node-gyp rebuild
+```
+
+You should see `gyp info ok` at the end. If the build fails:
+
+- **macOS**: Make sure Xcode Command Line Tools are installed (`xcode-select --install`).
+- **Linux**: Install build dependencies (`sudo apt install build-essential libx11-dev libxtst-dev`).
+
+To verify robotjs is working:
+
+```bash
+cd ~/.openclaw/extensions/openclaw-computer-use
+node -e "require('robotjs'); console.log('robotjs OK')"
 ```
 
 ## Configuration
